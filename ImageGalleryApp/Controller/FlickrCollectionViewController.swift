@@ -16,11 +16,15 @@ class FlickrCollectionViewController: UICollectionViewController {
     var pageCount = 1
     var urlImages = [String]()
     let imageSource = FlickrImageSource()
+    let loadingIndicator = UIActivityIndicatorView(style: .large)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Flickr Image App"
-        fetchFlickrImages(tags: tags, pageCount: pageCount)
+        self.view.addSubview(loadingIndicator)
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.center = self.view.center
+        fetchFlickrImages(tags: tags)
     }
 
     //Mark:- Clearing old data to feed new data
@@ -33,14 +37,16 @@ class FlickrCollectionViewController: UICollectionViewController {
         collectionView.reloadData()
     }
 
-    func fetchFlickrImages(tags: String, pageCount: Int) {
+    func fetchFlickrImages(tags: String) {
         //pageCount += 1
+        loadingIndicator.startAnimating()
         fetchImages.fetchImageDataFromFlickr(tags, pageCount) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success((let photoInfo, let sizeInfo)):
                     self?.imageData.append(contentsOf: photoInfo.photos?.photo ?? [])
                     self?.urlImages = sizeInfo
+                    self?.loadingIndicator.stopAnimating()
                     self?.collectionView.reloadData()
                 case .failure(let error):
                     print(error)
@@ -107,7 +113,8 @@ extension FlickrCollectionViewController: UISearchBarDelegate {
         guard !(searchBar.text?.isEmpty ?? true) else {
             return
         }
-        fetchFlickrImages(tags: searchBar.text ?? "", pageCount: pageCount)
+        tags = searchBar.text?.removeSpaceFromString ?? "kitten"
+        fetchFlickrImages(tags: searchBar.text ?? "kitten")
         searchBar.text = ""
     }
 }
@@ -129,5 +136,14 @@ extension FlickrCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return constants.sectionInsets.left
+    }
+}
+
+//Mark:- Scroll View
+extension FlickrCollectionViewController {
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= (scrollView.contentSize.height)){
+
+        }
     }
 }
