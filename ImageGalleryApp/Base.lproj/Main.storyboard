@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -45,6 +46,7 @@
                                 </collectionViewCellContentView>
                                 <connections>
                                     <outlet property="imageFlickr" destination="Nri-SV-z9a" id="Eyl-gP-x91"/>
+                                    <segue destination="zUT-x4-8ad" kind="show" identifier="SegueFullScreen" id="kNi-VK-gfP"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
@@ -80,6 +82,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EK3-V6-ZW5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1797.1014492753625" y="-576.5625"/>
+        </scene>
+        <!--Full Screen View Controller-->
+        <scene sceneID="oVq-in-NQr">
+            <objects>
+                <viewController id="zUT-x4-8ad" customClass="FullScreenViewController" customModule="ImageGalleryApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="v40-kb-v1C">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Z44-5X-3Mz">
+                                <rect key="frame" x="10" y="150" width="394" height="702"/>
+                            </imageView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="dIu-Gh-1RC">
+                                <rect key="frame" x="197" y="491" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="RUX-41-5GA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Z44-5X-3Mz" firstAttribute="top" secondItem="RUX-41-5GA" secondAttribute="top" constant="10" id="DC5-tq-UGd"/>
+                            <constraint firstItem="RUX-41-5GA" firstAttribute="bottom" secondItem="Z44-5X-3Mz" secondAttribute="bottom" constant="10" id="YJ7-o7-W0a"/>
+                            <constraint firstItem="RUX-41-5GA" firstAttribute="trailing" secondItem="Z44-5X-3Mz" secondAttribute="trailing" constant="10" id="b3v-fg-C5M"/>
+                            <constraint firstItem="Z44-5X-3Mz" firstAttribute="leading" secondItem="RUX-41-5GA" secondAttribute="leading" constant="10" id="gIT-G5-GXL"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hTf-2T-8od"/>
+                    <connections>
+                        <outlet property="largeImage" destination="Z44-5X-3Mz" id="uOV-38-7l3"/>
+                        <outlet property="loadingIndicator" destination="dIu-Gh-1RC" id="ViD-U0-bKP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Fg-1I-Myb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1050" y="-567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="23d-a6-xCx">
