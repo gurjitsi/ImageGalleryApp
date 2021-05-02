@@ -13,10 +13,10 @@ class FlickrCollectionViewController: UICollectionViewController {
     let constants = Constants()
     let fetchImages = FetchFlickrImages()
     var tags = "kitten"
-    var pageCount = 1
-    var urlImages = [String]()
+    var pageCount = 0
     let imageSource = FlickrImageSource()
     let loadingIndicator = UIActivityIndicatorView(style: .large)
+    let jsonDecoder = JSONDecoder()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,10 @@ class FlickrCollectionViewController: UICollectionViewController {
         self.view.addSubview(loadingIndicator)
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.center = self.view.center
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchFlickrImages(tags: tags)
     }
 
@@ -31,21 +35,19 @@ class FlickrCollectionViewController: UICollectionViewController {
     
     func resetImagesData() {
         imageData.removeAll()
-        urlImages.removeAll()
         tags = ""
-        pageCount = 1
-        collectionView.reloadData()
+        pageCount = 0
+        self.collectionView.reloadData()
     }
 
     func fetchFlickrImages(tags: String) {
-        //pageCount += 1
+        self.pageCount += 1
         loadingIndicator.startAnimating()
         fetchImages.fetchImageDataFromFlickr(tags, pageCount) { [weak self] (result) in
             DispatchQueue.main.async {
                 switch result {
-                case .success((let photoInfo, let sizeInfo)):
+                case .success(let photoInfo):
                     self?.imageData.append(contentsOf: photoInfo.photos?.photo ?? [])
-                    self?.urlImages = sizeInfo
                     self?.loadingIndicator.stopAnimating()
                     self?.collectionView.reloadData()
                 case .failure(let error):
@@ -63,33 +65,49 @@ class FlickrCollectionViewController: UICollectionViewController {
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return urlImages.count
+        return imageData.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let data = urlImages[indexPath.row]
+        let data = imageData[indexPath.row]
+
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: constants.reuseIdentifier, for: indexPath) as! FlickrCollectionViewCell
-        guard urlImages.count != 0 else {
+
+        guard imageData.count != 0 else {
             return cell
         }
-        guard let url = URL(string: data) else {
-            return cell
+
+        if indexPath.row == imageData.count - 1 {
+            fetchFlickrImages(tags: tags)
         }
-        let image = imageSource.cache.object(forKey: url as NSURL)
-        cell.imageFlickr.backgroundColor = UIColor(white: 0.95, alpha: 1)
-        cell.imageFlickr.image = image
-        if image == nil {
-            imageSource.getImagesFromURL(from: url) { (result) in
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let image):
-                        let indexPath = collectionView.indexPath(for: cell)
-                        if indexPath == indexPath {
-                            cell.imageFlickr.image = image
+
+        fetchImages.fetchImageSize (data.id) { (result) in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let urlInfo):
+                    let sourceImage = urlInfo.sizes?.size[1].source
+                    guard let urlPath = sourceImage else { return }
+                    let image = self.imageSource.cache.object(forKey: URL(string: urlPath)! as NSURL)
+                    cell.imageFlickr.backgroundColor = UIColor(white: 0.95, alpha: 1)
+                    cell.imageFlickr.image = image
+                    if image == nil {
+                        guard let url = URL(string: urlPath) else { return }
+                        self.imageSource.getImagesFromURL(from: url) { (result) in
+                            DispatchQueue.main.async {
+                                switch result {
+                                case .success(let image):
+                                    let indexPath = collectionView.indexPath(for: cell)
+                                    if indexPath == indexPath {
+                                        cell.imageFlickr.image = image
+                                    }
+                                case .failure(let error):
+                                    print(error)
+                                }
+                            }
                         }
-                    case .failure(let error):
-                        print(error)
                     }
+                case .failure(let error):
+                    print(error)
                 }
             }
         }
@@ -136,14 +154,5 @@ extension FlickrCollectionViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return constants.sectionInsets.left
-    }
-}
-
-//Mark:- Scroll View
-extension FlickrCollectionViewController {
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if ((scrollView.contentOffset.y + scrollView.frame.size.height) >= (scrollView.contentSize.height)){
-
-        }
     }
 }
