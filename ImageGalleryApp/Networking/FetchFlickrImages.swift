@@ -11,39 +11,17 @@ class FetchFlickrImages {
 
     let constants = Constants()
     let jsonDecoder = JSONDecoder()
-    var isTaskCompleted = false
-    var taskCount = 1
-    var imageSource = [String]()
 
     //Mark:- Get images from flickr
 
-    func fetchImageDataFromFlickr(_ keywords: String, _ pageCount: Int, completion: @escaping (Result<(FlickrImage, [String]), Error>) -> Void) {
+    func fetchImageDataFromFlickr(_ keywords: String, _ pageCount: Int, completion: @escaping (Result<FlickrImage, Error>) -> Void) {
         let searchKeywords = keywords.removeSpaceFromString
         guard let urlPath = getURLPath(searchKeywords, pageCount) else { return }
         let dataTask = URLSession.shared.dataTask(with: urlPath) { (data, response, error) in
             if let data = data {
                 do {
                     let photosInfo = try self.jsonDecoder.decode(FlickrImage.self, from: data)
-                    self.fetchImageSize(photosInfo.photos?.photo ?? []) { (sizeResult) in
-                        DispatchQueue.main.async {
-                            switch sizeResult {
-                            case .success( _):
-                                self.taskCount += 1
-                                if self.taskCount == photosInfo.photos?.photo.count {
-                                    self.isTaskCompleted = true
-                                }
-
-                                if self.isTaskCompleted {
-                                    completion(.success((photosInfo, self.imageSource)))
-                                    self.isTaskCompleted = false
-                                    self.taskCount = 1
-                                    self.imageSource.removeAll()
-                                }
-                            case .failure(let error):
-                                print(error)
-                            }
-                        }
-                    }
+                    completion(.success(photosInfo))
                 } catch {
                     completion(.failure(error))
                 }
@@ -55,35 +33,22 @@ class FetchFlickrImages {
     }
 }
 
-//Mark: - Get image size
+//Mark: - Get image size information
 
 extension FetchFlickrImages {
-
-    func fetchImageSize(_ imageResult: [FlickrUrls], completion: @escaping (Result<FlickrImageSize, Error>) -> Void) {
-        if imageResult.count != 0 {
-            for photoID in imageResult {
-                guard let urlPathSize = getSizeURLPath(photoID.id) else { return }
-                let dataTask = URLSession.shared.dataTask(with: urlPathSize) { (data, response, error) in
-                    if let data = data {
-                        do {
-                            let photosSize = try self.jsonDecoder.decode(FlickrImageSize.self, from: data)
-                            guard let photoSizeCount = photosSize.sizes?.size.count else { return }
-                            for item in 0..<photoSizeCount {
-                                if photosSize.sizes?.size[item].label == "Large Square" {
-                                    self.imageSource.append(photosSize.sizes?.size[item].source ?? "")
-                                }
-                            }
-                            completion(.success(photosSize))
-                        } catch {
-                            completion(.failure(error))
-                        }
-                    } else if let error = error {
-                        completion(.failure(error))
-                    }
+    func fetchImageSize(_ id: String, completion: @escaping (Result<FlickrImageSize, Error>) -> Void) {
+        guard let urlPath = getSizeURLPath(id) else { return }
+        let dataTaskSize = URLSession.shared.dataTask(with: urlPath) { (dataSize, response, error) in
+            if let dataSize = dataSize {
+                do {
+                    let photosSize = try self.jsonDecoder.decode(FlickrImageSize.self, from: dataSize)
+                    completion(.success(photosSize))
+                } catch {
+                    completion(.failure(error))
                 }
-                dataTask.resume()
             }
         }
+        dataTaskSize.resume()
     }
 }
 
