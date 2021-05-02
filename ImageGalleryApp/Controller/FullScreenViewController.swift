@@ -9,8 +9,8 @@ import UIKit
 
 class FullScreenViewController: UIViewController {
 
-    var photoID = ""
     @IBOutlet weak var largeImage: UIImageView!
+    var photoID = ""
     let fetchImages = FetchFlickrImages()
     let imageSource = FlickrImageSource()
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
@@ -29,7 +29,6 @@ extension FullScreenViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let urlInfo):
-
                     let sourceImage = urlInfo.sizes?.size[9].source
                     guard let urlPath = sourceImage else { return }
                     let image = self.imageSource.cache.object(forKey: URL(string: urlPath)! as NSURL)
