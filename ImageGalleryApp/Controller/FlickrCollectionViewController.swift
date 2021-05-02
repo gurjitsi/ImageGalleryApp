@@ -24,10 +24,6 @@ class FlickrCollectionViewController: UICollectionViewController {
         self.view.addSubview(loadingIndicator)
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.center = self.view.center
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         fetchFlickrImages(tags: tags)
     }
 
@@ -134,6 +130,20 @@ extension FlickrCollectionViewController: UISearchBarDelegate {
         tags = searchBar.text?.removeSpaceFromString ?? "kitten"
         fetchFlickrImages(tags: searchBar.text ?? "kitten")
         searchBar.text = ""
+    }
+}
+
+extension FlickrCollectionViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SegueFullScreen" {
+            let fullScreenVC = segue.destination as! FullScreenViewController
+            let cell = sender as! UICollectionViewCell
+            let indexPath = self.collectionView.indexPath(for: cell)
+            if let indexPath = indexPath {
+                let photoID = imageData[indexPath.row].id
+                fullScreenVC.photoID = photoID
+            }
+        }
     }
 }
 
