@@ -10,10 +10,9 @@ import UIKit
 class FullScreenViewController: UIViewController {
 
     @IBOutlet weak var largeImage: UIImageView!
-    var photoID = ""
-    let fetchImages = FetchFlickrImages()
-    let imageSource = FlickrImageSource()
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    var photoID = ""
+    private var viewModel = FullScreenViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,18 +24,18 @@ class FullScreenViewController: UIViewController {
 
 extension FullScreenViewController {
     func fetchLargeImage() {
-        fetchImages.fetchImageSize (photoID) { (result) in
+        viewModel.fetchImages.fetchImageSize (photoID) { (result) in
             DispatchQueue.main.async {
                 switch result {
                 case .success(let urlInfo):
                     let sourceImage = urlInfo.sizes?.size[9].source
                     guard let urlPath = sourceImage else { return }
-                    let image = self.imageSource.cache.object(forKey: URL(string: urlPath)! as NSURL)
+                    let image = self.viewModel.imageSource.cache.object(forKey: URL(string: urlPath)! as NSURL)
                     self.largeImage.backgroundColor = UIColor(white: 0.95, alpha: 1)
                     self.largeImage.image = image
                     if image == nil {
                         guard let url = URL(string: urlPath) else { return }
-                        self.imageSource.getImagesFromURL(from: url) { (result) in
+                        self.viewModel.imageSource.getImagesFromURL(from: url) { (result) in
                             DispatchQueue.main.async {
                                 switch result {
                                 case .success(let image):
