@@ -19,14 +19,14 @@ class CollectionViewModel {
 }
 
 extension CollectionViewModel {
-
+    
     func numberOfRows(frameWidth: CGFloat) -> CGSize {
         let padding = constants.sectionInsets.left * (constants.itemsPerRow + 1)
         let width = frameWidth - padding
         let widthPerImage = width / constants.itemsPerRow
         return CGSize(width: widthPerImage, height: widthPerImage)
     }
-
+    
     var resetImagesData : Void {
         imageData.removeAll()
         tags = ""
