@@ -2,7 +2,7 @@
 //  FullScreenViewModel.swift
 //  ImageGalleryApp
 //
-//  Created by Gurjit Singh on 02/05/21.
+//  Created by Gurjit Singh on 03/05/21.
 //
 
 import Foundation
