@@ -26,6 +26,7 @@
 		E2C3E7F8263EE01500C4BADC /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3E7F7263EE01500C4BADC /* CollectionViewModel.swift */; };
 		E2C7E1BC263AAFAE00AD6737 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C7E1BB263AAFAE00AD6737 /* String+Extensions.swift */; };
 		E2C7E1C0263AE29800AD6737 /* FlickrImageSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C7E1BF263AE29800AD6737 /* FlickrImageSize.swift */; };
+		E2E42B06263F782C0039AC9B /* FullScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E42B05263F782C0039AC9B /* FullScreenViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		E2C3E7F7263EE01500C4BADC /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		E2C7E1BB263AAFAE00AD6737 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		E2C7E1BF263AE29800AD6737 /* FlickrImageSize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrImageSize.swift; sourceTree = "<group>"; };
+		E2E42B05263F782C0039AC9B /* FullScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				E2C3E7F7263EE01500C4BADC /* CollectionViewModel.swift */,
+				E2E42B05263F782C0039AC9B /* FullScreenViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				E226FE95263981B70029B5DD /* AppDelegate.swift in Sources */,
 				E226FEC4263989C90029B5DD /* FlickrCollectionViewController.swift in Sources */,
 				E226FED8263998100029B5DD /* ImageSearchBarView.swift in Sources */,
+				E2E42B06263F782C0039AC9B /* FullScreenViewModel.swift in Sources */,
 				E226FE97263981B70029B5DD /* SceneDelegate.swift in Sources */,
 				E226FF1B2639E17D0029B5DD /* FlickrImageSource.swift in Sources */,
 				E226FEFA2639C6330029B5DD /* FetchFlickrImages.swift in Sources */,
