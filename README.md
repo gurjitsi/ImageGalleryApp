@@ -8,7 +8,7 @@
 <h3>🚀 Features</h3>
 <p>
 
-    🔍 <b>Flickr API Integration </b> – Search for images using keywords and access a vast collection of visual content.<br/><br/>
+🔍 <b>Flickr API Integration </b> – Search for images using keywords and access a vast collection of visual content.<br/><br/>
     📜 <b>Infinite Scrolling</b> – Browse through search results effortlessly without interruptions.<br/><br/>
     🛠 <b>MVVM Architecture</b> – Ensures separation of concerns, making the app easier to maintain and test.<br/><br/>
     🎯 Advanced Search – Perform keyword-based searches for more relevant image results.<br/><br/>
