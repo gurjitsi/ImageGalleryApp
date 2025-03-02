@@ -27,10 +27,10 @@
 </ul>
 <h3>🚀 Installation</h3>
 <ul><li>Clone the repository:<br/>
-''' sh 
+```sh
     git clone   https://github.com/gurjitsi/ImageGalleryApp.git
 cd ios-image-gallery
-''' 
+```
 </li>
 <li>Open iOSImageGallery.xcodeproj in Xcode.</li>
 <li>Install dependencies (if any).</li>
