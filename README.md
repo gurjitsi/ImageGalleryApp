@@ -1,21 +1,38 @@
 # ImageGalleryApp
-<p>The iOS Image Gallery app is a sleek and efficient application that harnesses the power of the Flickr API to provide users with a seamless experience in searching and viewing images. Developed using Swift 5 and Xcode 12.1, this app employs the Model-View-ViewModel (MVVM) design pattern, ensuring a clean and maintainable codebase while delivering a user-friendly interface.</p>
+<p>The iOS Image Gallery app is a sleek and efficient application that leverages the Flickr API to provide users with a seamless image search and viewing experience. Developed using Swift 5 and Xcode 12.1, it follows the MVVM (Model-View-ViewModel) architecture, ensuring a clean, maintainable, and scalable codebase.</p>
+
+<h3>📸 Screenshots</h3>
 
 ![Dribbble shot HD - 4](https://user-images.githubusercontent.com/2215799/116831211-df586d80-aba5-11eb-8595-455144676a58.png)
 
-<h3>Key features of the app include:</h3>
+<h3>🚀 Features</h3>
 <p>
   <ul>
-    <li><b>Flickr API Integration:</b> Utilizing the Flickr API, users can search for a vast array of images based on keywords or categories, accessing a rich repository of visual content.</li><br/>
-    <li><b>Infinite Scrolling:</b> The app implements an infinite scrolling feature, allowing users to continuously browse through search results without interruption, ensuring a smooth and uninterrupted exploration of images.</li><br/>
-    <li><b>MVVM Architecture:</b> Built on the Model-View-ViewModel design pattern, the app separates the data logic (Model), user interface (View), and presentation logic (ViewModel), promoting maintainability, testability, and flexibility in code management.</li><br/>
-    <li><b>Search Functionality:</b> Users can input keywords or tags to perform searches, retrieving relevant images from Flickr's extensive database, enhancing the app's usability and convenience.</li><br/>
-    <li><b>Image Display:</b> Images are elegantly displayed in a gallery format, optimized for easy viewing, with high-resolution previews for a delightful user experience.</li><br/>
-    <li><b>Detail View:</b> Tapping on an image in the gallery reveals a detailed view, providing additional information about the selected image, including its title, author, and description where available.</li><br/>
-    <li><b>Smooth User Interface:</b> The app boasts a clean and intuitive interface, ensuring a seamless navigation experience and allowing users to focus on exploring and enjoying the images without distractions.</li><br/>
-    <li><b>Error Handling and Loading States:</b> Implementation of error handling and loading states ensures that users are informed about any issues that may arise during searches or image loading, maintaining transparency in the app's functionality.</li>
-  </ul>
+    🔍 <b>Flickr API Integration </b> – Search for images using keywords and access a vast collection of visual content.<br/>
+    📜 <b>Infinite Scrolling</b> – Browse through search results effortlessly without interruptions.<br/>
+    🛠 <b>MVVM Architecture</b> – Ensures separation of concerns, making the app easier to maintain and test.<br/>
+    🎯 Advanced Search – Perform keyword-based searches for more relevant image results.<br/>
+🖼 Image Gallery Display – High-resolution images presented in an elegant, user-friendly layout.<br/>
+📄 Detail View – Tap an image to view additional details, including title, author, and description.<br/>
+⚡ Smooth UI & UX – A clean and intuitive interface for an engaging browsing experience.<br/>
+❗ Error Handling & Loading States – Keeps users informed about search results, errors, and loading statuses.
+  <br/></ul>
 </p>
+<h3>🛠 Tech Stack</h3>
+<ul>
+  <li>Language: Swift 5</li>
+  <li>IDE: Xcode 12.1</li>
+  <li>Architecture: MVVM</li>
+  <li>API: Flickr API</li>
+</ul>
+<h3>🚀 Installation</h3>
+<ul><li>Clone the repository:<br/>
+git clone https://github.com/your-username/ios-image-gallery.git
+cd ios-image-gallery</li>
+<li>Open iOSImageGallery.xcodeproj in Xcode.</li>
+<li>Install dependencies (if any).</li>
+<li>Run the app on a simulator or physical device.</li>
+<h3>📜 License</h3>
 <p>
-  The iOS Image Gallery app is a sophisticated and user-centric application that brings together the power of the Flickr API with a seamless user interface, offering a visually engaging experience while adhering to best coding practices through the MVVM architecture.
+  This project is licensed under the MIT License – see the LICENSE file for details.
 </p>
