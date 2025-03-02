@@ -26,13 +26,9 @@
   <li>API: Flickr API</li>
 </ul>
 <h3>🚀 Installation</h3>
-<ul><li>Clone the repository:<br/>
-<ol><li>
-git clone https://github.com/gurjitsi/ImageGalleryApp.git
-<li>cd ios-image-gallery</li></ol>
-</li>
-<li>Open iOSImageGallery.xcodeproj in Xcode.</li>
-<li>Install dependencies (if any).</li>
+<ul>
+<li>Download and install Xcode. Refer to the .xcode-version file for the minimum required version.</li>
+<li>Clone this repository in the folder of your preference.</li>
 <li>Run the app on a simulator or physical device.</li>
 <h3>📜 License</h3>
 <p>
