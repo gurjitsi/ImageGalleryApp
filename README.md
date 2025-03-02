@@ -7,16 +7,16 @@
 
 <h3>🚀 Features</h3>
 <p>
-  <ul>
-    🔍 <b>Flickr API Integration </b> – Search for images using keywords and access a vast collection of visual content.<br/>
-    📜 <b>Infinite Scrolling</b> – Browse through search results effortlessly without interruptions.<br/>
-    🛠 <b>MVVM Architecture</b> – Ensures separation of concerns, making the app easier to maintain and test.<br/>
-    🎯 Advanced Search – Perform keyword-based searches for more relevant image results.<br/>
-🖼 Image Gallery Display – High-resolution images presented in an elegant, user-friendly layout.<br/>
-📄 Detail View – Tap an image to view additional details, including title, author, and description.<br/>
-⚡ Smooth UI & UX – A clean and intuitive interface for an engaging browsing experience.<br/>
+
+    🔍 <b>Flickr API Integration </b> – Search for images using keywords and access a vast collection of visual content.<br/><br/>
+    📜 <b>Infinite Scrolling</b> – Browse through search results effortlessly without interruptions.<br/><br/>
+    🛠 <b>MVVM Architecture</b> – Ensures separation of concerns, making the app easier to maintain and test.<br/><br/>
+    🎯 Advanced Search – Perform keyword-based searches for more relevant image results.<br/><br/>
+🖼 Image Gallery Display – High-resolution images presented in an elegant, user-friendly layout.<br/><br/>
+📄 Detail View – Tap an image to view additional details, including title, author, and description.<br/><br/>
+⚡ Smooth UI & UX – A clean and intuitive interface for an engaging browsing experience.<br/><br/>
 ❗ Error Handling & Loading States – Keeps users informed about search results, errors, and loading statuses.
-  <br/></ul>
+  <br/>
 </p>
 <h3>🛠 Tech Stack</h3>
 <ul>
@@ -27,8 +27,8 @@
 </ul>
 <h3>🚀 Installation</h3>
 <ul><li>Clone the repository:<br/>
-git clone https://github.com/your-username/ios-image-gallery.git
-cd ios-image-gallery</li>
+<code>git clone https://github.com/gurjitsi/ios-image-gallery.git
+cd ios-image-gallery</code></li>
 <li>Open iOSImageGallery.xcodeproj in Xcode.</li>
 <li>Install dependencies (if any).</li>
 <li>Run the app on a simulator or physical device.</li>
