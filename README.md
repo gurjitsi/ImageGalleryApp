@@ -27,6 +27,10 @@
 </ul>
 <h3>🚀 Installation</h3>
 <ul><li>Clone the repository:<br/>
+``sh
+git clone https://github.com/your-username/ios-image-gallery.git
+cd ios-image-gallery
+``
 <ol><li>
     git clone   https://github.com/gurjitsi/ImageGalleryApp.git
 <li>cd ios-image-gallery</li></ol>
